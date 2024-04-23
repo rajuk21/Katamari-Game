@@ -56,7 +56,7 @@ window.init = async () => {
    console.log("Hi 1", lava_planet1);
 
   const lava_planet2 = await load('./assets/lava_planet/scene.gltf');
-  lava_planet2.position.set(0, 0, 5); // Set position for the second lava_planet
+  lava_planet2.position.set(1, 0, 5); // Set position for the second lava_planet
   scene.add(lava_planet2);
   lava_planet2.name="planet2";
   const lava_planet3 = await load('./assets/lava_planet/scene.gltf');
@@ -64,11 +64,11 @@ window.init = async () => {
   scene.add(lava_planet3);
   lava_planet3.name="planet3";
   const lava_planet4 = await load('./assets/lava_planet/scene.gltf');
-  lava_planet4.position.set(1, 0, 9); // Set position for the third lava_planet
+  lava_planet4.position.set(1, 0, 9); // Set position for the fourth lava_planet
   scene.add(lava_planet4);
   lava_planet4.name="planet4";
   const lava_planet5 = await load('./assets/lava_planet/scene.gltf');
-  lava_planet5.position.set(1, 0, 11); // Set position for the third lava_planet
+  lava_planet5.position.set(1, 0, 11); // Set position for the fifth lava_planet
   scene.add(lava_planet5);
   lava_planet5.name="planet5";
   
