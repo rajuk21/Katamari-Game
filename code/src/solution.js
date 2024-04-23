@@ -128,7 +128,7 @@ function endGame() {
 
 window.loop = (dt, input) => {
   if (gameEnded) {
-    alert('Game Over! All planets have been disappeared.');
+    alert('Game Over! ');
     return;
   }
 
