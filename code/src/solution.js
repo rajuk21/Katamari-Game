@@ -24,7 +24,7 @@ window.init = async () => {
 
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(10, 10, 10);
+  camera.position.set(5, 5, 5);
   camera.lookAt(0, 0, 0);
 
   const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
@@ -46,7 +46,7 @@ window.init = async () => {
    beach_ball = await load('./assets/beach_ball/scene.gltf');
    beach_ball.position.set(0,0,0);
    beach_ball.name="mainball";
-   beach_ball.scale.set(0.2, 0.2, 0.2);
+   beach_ball.scale.set(0, 0, 0);
    scene.add(beach_ball);
 
    const lava_planet1 = await load('./assets/lava_planet/scene.gltf');
@@ -60,11 +60,7 @@ window.init = async () => {
   scene.add(lava_planet2);
   lava_planet2.name="planet2";
   const lava_planet3 = await load('./assets/lava_planet/scene.gltf');
-<<<<<<< HEAD
   lava_planet3.position.set(1, 0, 13); // Set position for the third lava_planet
-=======
-  lava_planet3.position.set(1, 0, 7); // Set position for the third lava_planet
->>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
   scene.add(lava_planet3);
   lava_planet3.name="planet3";
   const lava_planet4 = await load('./assets/lava_planet/scene.gltf');
@@ -72,7 +68,6 @@ window.init = async () => {
   scene.add(lava_planet4);
   lava_planet4.name="planet4";
   const lava_planet5 = await load('./assets/lava_planet/scene.gltf');
-<<<<<<< HEAD
   lava_planet5.position.set(1, 0, 15); // Set position for the fifth lava_planet
   scene.add(lava_planet5);
   lava_planet5.name="planet5";
@@ -104,8 +99,8 @@ window.init = async () => {
   plastic_water_bottle4.name = "plastic_water_bottle4";
 
 
-  const earth1 = await load('./assets/earth/scene.gltf');
-earth1.position.set(2, 0, 4);
+const earth1 = await load('./assets/earth/scene.gltf');
+earth1.position.set(1, 0, 4);
 scene.add(earth1);
 earth1.name = "earth1";
 console.log("itsme", earth1);
@@ -128,7 +123,7 @@ earth4.name = "earth4";
 
 
 const pool_ball1 = await load('./assets/pool_ball/scene.gltf');
-pool_ball1.position.set(2, 0, 4);
+pool_ball1.position.set(1, 0, 4);
 scene.add(pool_ball1);
 pool_ball1.name = "pool_ball1";
 console.log("itsme", pool_ball1);
@@ -139,29 +134,17 @@ scene.add(pool_ball2);
 pool_ball2.name = "pool_ball2";
 
 const pool_ball3 = await load('./assets/pool_ball/scene.gltf');
-pool_ball3.position.set(0, 0, -4);
+pool_ball3.position.set(1, 0, -4);
 scene.add(pool_ball3);
 pool_ball3.name = "pool_ball3";
 
 const pool_ball4 = await load('./assets/pool_ball/scene.gltf');
-pool_ball4.position.set(5, 0, 8);
+pool_ball4.position.set(1, 0, 8);
 scene.add(pool_ball4);
 pool_ball4.name = "pool_ball4";
 
   
   
-=======
-  lava_planet5.position.set(1, 0, 11); // Set position for the fifth lava_planet
-  scene.add(lava_planet5);
-  lava_planet5.name="planet5";
-  
-  
-
-
-
-  
-   //earth.scale.set(0.3,0.3);
->>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
    
    
   
@@ -169,9 +152,8 @@ pool_ball4.name = "pool_ball4";
   console.log('made a scene', beach_ball);
   
 };
-let remainingPlanets = 13; // Assuming there are 5 planets initially
+let remainingPlanets = 20; // Assuming there are 5 planets initially
 let gameEnded = false;
-
 
 function collide() {
   const p = scene.getObjectByName('mainball');
@@ -187,12 +169,10 @@ function collide() {
     scene.getObjectByName('earth2'),
     scene.getObjectByName('earth3'),
     scene.getObjectByName('earth4'),
-    scene.getObjectByName('earth5'),
     scene.getObjectByName('plastic_water_bottle1'),
     scene.getObjectByName('plastic_water_bottle2'),
     scene.getObjectByName('plastic_water_bottle3'),
     scene.getObjectByName('plastic_water_bottle4'),
-    scene.getObjectByName('plastic_water_bottle5'),
     scene.getObjectByName('pool_ball1'),
     scene.getObjectByName('pool_ball2'),
     scene.getObjectByName('pool_ball3'),
@@ -221,11 +201,7 @@ function collide() {
 
 
 function endGame() {
-<<<<<<< HEAD
   console.log('Game Over! ');
-=======
-  console.log('Game Over!');
->>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
   // Add any other logic you want for ending the game, such as displaying a message or resetting the scene
 }
 
@@ -285,8 +261,4 @@ window.loop = (dt, input) => {
   // Render the scene
   renderer.render(scene, camera);
 
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
