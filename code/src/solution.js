@@ -72,7 +72,7 @@ window.init = async () => {
   scene.add(lava_planet5);
   lava_planet5.name="planet5";
   
-  
+  //plastic bottle 
 
   const plastic_water_bottle1 = await load('./assets/plastic_water_bottle/scene.gltf');
   plastic_water_bottle1.position.set(2, 0, -4);
