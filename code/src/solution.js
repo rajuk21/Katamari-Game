@@ -207,7 +207,6 @@ let rollSpeed = 0.08;
 
 function endGame() {
   console.log('Game Over! ');
-  // Add any other logic you want for ending the game, such as displaying a message or resetting the scene
 }
 
 
