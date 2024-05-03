@@ -98,7 +98,7 @@ window.init = async () => {
   scene.add(plastic_water_bottle4);
   plastic_water_bottle4.name = "plastic_water_bottle4";
 
-
+//earth
 const earth1 = await load('./assets/earth/scene.gltf');
 earth1.position.set(1, 0, 4);
 scene.add(earth1);
@@ -121,7 +121,7 @@ earth4.position.set(5, 0, 8);
 scene.add(earth4);
 earth4.name = "earth4";
 
-
+//pool ball
 const pool_ball1 = await load('./assets/pool_ball/scene.gltf');
 pool_ball1.position.set(1, 0, 4);
 scene.add(pool_ball1);
@@ -152,7 +152,7 @@ pool_ball4.name = "pool_ball4";
   console.log('made a scene', beach_ball);
   
 };
-let remainingPlanets = 17; // Assuming there are 5 planets initially
+let remainingPlanets = 17; 
 let gameEnded = false;
 
 function collide() {
@@ -198,15 +198,12 @@ function collide() {
   });
 }
 
-// Variables for  acceleration and deceleration
+// Variables for acceleration and deceleration
 let acceleration = 0.0003;
 let deceleration = 0.001;
-let speed = 0;
-let rollAngle = 1;
-let rotationSpeed = 0.1
+let currentSpeed = 0;
+let rollSpeed = 0.08;
 //
-
-
 
 function endGame() {
   console.log('Game Over! ');
@@ -220,56 +217,44 @@ window.loop = (dt, input) => {
     return;
   }
 
-    if (beach_ball && (input.keys.has('ArrowUp') || input.keys.has('ArrowDown') || input.keys.has('ArrowLeft') || input.keys.has('ArrowRight'))) {
-      const movementSpeed = 0.008; // Movement speed
-      const rollSpeed = 0.08; // Roll speed - adjust this for the size of the ball
-  
-      // Accelerate the ball
-      if (speed < movementSpeed) {
-        speed += acceleration * dt;
-      }
-  
-      // Forward and backward movement - along the Z-axis
-      if (input.keys.has('ArrowUp')) {
-        beach_ball.position.z -= speed * dt;
-        if (beach_ball.rotation) {
-          beach_ball.rotation.y += rollSpeed * speed * dt; // Increase roll angle
-        }
-        collide();
-      }
-      if (input.keys.has('ArrowDown')) {
-        beach_ball.position.z += speed * dt;
-        if (beach_ball.rotation) {
-          beach_ball.rotation.y -= rollSpeed * speed * dt; // Decrease roll angle
-        }
-        collide();
-      }
-  
-      // Left and right movement - along the X-axis
-      if (input.keys.has('ArrowLeft')) {
-        beach_ball.position.x -= speed * dt;
-        if (beach_ball.rotation) {
-          beach_ball.rotation.y += rollSpeed * speed * dt; // Increase roll angle
-        }
-        collide();
-      }
-      if (input.keys.has('ArrowRight')) {
-        beach_ball.position.x += speed * dt;
-        if (beach_ball.rotation) {
-          beach_ball.rotation.y -= rollSpeed * speed * dt; // Decrease roll angle
-        }
-        collide();
-      }
+  if (beach_ball && (input.keys.has('ArrowUp') || input.keys.has('ArrowDown') || input.keys.has('ArrowLeft') || input.keys.has('ArrowRight'))) {
+    const movementSpeed = 0.008; // Movement speed
 
+    // Accelerate the ball
+    if (currentSpeed < movementSpeed) {
+      currentSpeed += acceleration * dt;
+    }
+
+    // Forward and backward movement - along the Z-axis
+    if (input.keys.has('ArrowUp')) {
+      beach_ball.position.z -= currentSpeed * dt;
+      collide();
+    }
+    if (input.keys.has('ArrowDown')) {
+      beach_ball.position.z += currentSpeed * dt;
+      collide();
+    }
+
+    // Left and right movement - along the X-axis
+    if (input.keys.has('ArrowLeft')) {
+      beach_ball.position.x -= currentSpeed * dt;
+      collide();
+    }
+    if (input.keys.has('ArrowRight')) {
+      beach_ball.position.x += currentSpeed * dt;
+      collide();
+    }
+
+    // Decelerate the ball
+    if (!input.keys.has('ArrowUp') && !input.keys.has('ArrowDown') && !input.keys.has('ArrowLeft') && !input.keys.has('ArrowRight')) {
+    currentSpeed -= deceleration * dt;
+    currentSpeed = Math.max(0, currentSpeed);
+    }
     // Clamp the ball's position to the plane's boundaries
     const planeBoundaryX = 50 / 2; // half the width
     const planeBoundaryZ = 50 / 2; // half the depth
     beach_ball.position.x = Math.max(-planeBoundaryX, Math.min(planeBoundaryX, beach_ball.position.x));
     beach_ball.position.z = Math.max(-planeBoundaryZ, Math.min(planeBoundaryZ, beach_ball.position.z));
-    
-  
-    
-
 
     // Keep the camera looking at the ball
     camera.lookAt(beach_ball.position);
@@ -277,5 +262,8 @@ window.loop = (dt, input) => {
 
   // Render the scene
   renderer.render(scene, camera);
-
 };
+
+
+
+//Took Reference from class and also used AI tools for coorecting errors 
