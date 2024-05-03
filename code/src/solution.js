@@ -60,7 +60,11 @@ window.init = async () => {
   scene.add(lava_planet2);
   lava_planet2.name="planet2";
   const lava_planet3 = await load('./assets/lava_planet/scene.gltf');
+<<<<<<< HEAD
   lava_planet3.position.set(1, 0, 13); // Set position for the third lava_planet
+=======
+  lava_planet3.position.set(1, 0, 7); // Set position for the third lava_planet
+>>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
   scene.add(lava_planet3);
   lava_planet3.name="planet3";
   const lava_planet4 = await load('./assets/lava_planet/scene.gltf');
@@ -68,6 +72,7 @@ window.init = async () => {
   scene.add(lava_planet4);
   lava_planet4.name="planet4";
   const lava_planet5 = await load('./assets/lava_planet/scene.gltf');
+<<<<<<< HEAD
   lava_planet5.position.set(1, 0, 15); // Set position for the fifth lava_planet
   scene.add(lava_planet5);
   lava_planet5.name="planet5";
@@ -145,6 +150,18 @@ pool_ball4.name = "pool_ball4";
 
   
   
+=======
+  lava_planet5.position.set(1, 0, 11); // Set position for the fifth lava_planet
+  scene.add(lava_planet5);
+  lava_planet5.name="planet5";
+  
+  
+
+
+
+  
+   //earth.scale.set(0.3,0.3);
+>>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
    
    
   
@@ -154,6 +171,7 @@ pool_ball4.name = "pool_ball4";
 };
 let remainingPlanets = 13; // Assuming there are 5 planets initially
 let gameEnded = false;
+
 
 function collide() {
   const p = scene.getObjectByName('mainball');
@@ -203,7 +221,11 @@ function collide() {
 
 
 function endGame() {
+<<<<<<< HEAD
   console.log('Game Over! ');
+=======
+  console.log('Game Over!');
+>>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
   // Add any other logic you want for ending the game, such as displaying a message or resetting the scene
 }
 
@@ -263,4 +285,8 @@ window.loop = (dt, input) => {
   // Render the scene
   renderer.render(scene, camera);
 
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 92d6dcb6806ed4ced5e37812ccec58e32e3cab48
