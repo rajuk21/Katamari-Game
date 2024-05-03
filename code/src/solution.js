@@ -24,7 +24,7 @@ window.init = async () => {
 
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.set(5, 5, 5);
+  camera.position.set(10, 10, 10);
   camera.lookAt(0, 0, 0);
 
   const directionalLight = new THREE.DirectionalLight(0xffffff, 10);
@@ -46,7 +46,7 @@ window.init = async () => {
    beach_ball = await load('./assets/beach_ball/scene.gltf');
    beach_ball.position.set(0,0,0);
    beach_ball.name="mainball";
-   beach_ball.scale.set(0, 0, 0);
+   beach_ball.scale.set(0.2, 0.2, 0.2);
    scene.add(beach_ball);
 
    const lava_planet1 = await load('./assets/lava_planet/scene.gltf');
