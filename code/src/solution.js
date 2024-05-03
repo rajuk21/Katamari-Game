@@ -152,7 +152,7 @@ pool_ball4.name = "pool_ball4";
   console.log('made a scene', beach_ball);
   
 };
-let remainingPlanets = 20; // Assuming there are 5 planets initially
+let remainingPlanets = 17; // Assuming there are 5 planets initially
 let gameEnded = false;
 
 function collide() {
@@ -198,6 +198,14 @@ function collide() {
   });
 }
 
+// Variables for  acceleration and deceleration
+let acceleration = 0.0003;
+let deceleration = 0.001;
+let speed = 0;
+let rollAngle = 1;
+let rotationSpeed = 0.1
+//
+
 
 
 function endGame() {
@@ -212,37 +220,46 @@ window.loop = (dt, input) => {
     return;
   }
 
-  if (beach_ball && (input.keys.has('ArrowUp') || input.keys.has('ArrowDown') || input.keys.has('ArrowLeft') || input.keys.has('ArrowRight'))) {
-    const movementSpeed = 0.008; // Movement speed
-    const rollSpeed = 0.08; // Roll speed - adjust this for the size of the ball
-    
-
-    // Forward and backward movement - along the Z-axis
-    if (input.keys.has('ArrowUp')) {
-      beach_ball.position.z -= movementSpeed * dt;
-      beach_ball.rotation.y += movementSpeed * dt / (Math.PI * beach_ball.scale.y); 
-      collide();
-    }
-    if (input.keys.has('ArrowDown')) {
-      beach_ball.position.z += movementSpeed * dt;
-      // Roll around the X-axis in the opposite direction
-      beach_ball.rotation.y += movementSpeed * dt / (Math.PI * beach_ball.scale.y); 
-      collide();
-    }
-
-    // Left and right movement - along the X-axis
-    if (input.keys.has('ArrowLeft')) {
-      beach_ball.position.x -= movementSpeed * dt;
-      // Roll around the Y-axis
-      beach_ball.rotation.y += movementSpeed * dt / (Math.PI * beach_ball.scale.y); // Assuming the ball's diameter is 1 unit
-      collide();
-    }
-    if (input.keys.has('ArrowRight')) {
-      beach_ball.position.x += movementSpeed * dt;
-      // Roll around the Y-axis in the opposite direction
-      beach_ball.rotation.y -= movementSpeed * dt / (Math.PI * beach_ball.scale.y); // Assuming the ball's diameter is 1 unit
-      collide();
-    }
+    if (beach_ball && (input.keys.has('ArrowUp') || input.keys.has('ArrowDown') || input.keys.has('ArrowLeft') || input.keys.has('ArrowRight'))) {
+      const movementSpeed = 0.008; // Movement speed
+      const rollSpeed = 0.08; // Roll speed - adjust this for the size of the ball
+  
+      // Accelerate the ball
+      if (speed < movementSpeed) {
+        speed += acceleration * dt;
+      }
+  
+      // Forward and backward movement - along the Z-axis
+      if (input.keys.has('ArrowUp')) {
+        beach_ball.position.z -= speed * dt;
+        if (beach_ball.rotation) {
+          beach_ball.rotation.y += rollSpeed * speed * dt; // Increase roll angle
+        }
+        collide();
+      }
+      if (input.keys.has('ArrowDown')) {
+        beach_ball.position.z += speed * dt;
+        if (beach_ball.rotation) {
+          beach_ball.rotation.y -= rollSpeed * speed * dt; // Decrease roll angle
+        }
+        collide();
+      }
+  
+      // Left and right movement - along the X-axis
+      if (input.keys.has('ArrowLeft')) {
+        beach_ball.position.x -= speed * dt;
+        if (beach_ball.rotation) {
+          beach_ball.rotation.y += rollSpeed * speed * dt; // Increase roll angle
+        }
+        collide();
+      }
+      if (input.keys.has('ArrowRight')) {
+        beach_ball.position.x += speed * dt;
+        if (beach_ball.rotation) {
+          beach_ball.rotation.y -= rollSpeed * speed * dt; // Decrease roll angle
+        }
+        collide();
+      }
 
     // Clamp the ball's position to the plane's boundaries
     const planeBoundaryX = 50 / 2; // half the width
